@@ -1,7 +1,7 @@
 import * as Peko from "../mod.ts";
 import { renderToString } from "https://npm.reversehttp.com/preact,preact/hooks,htm/preact,preact-render-to-string";
 
-import htmlTemplate, { blank } from "../template.ts";
+import { blank } from "../template.ts";
 import config from "../config.ts";
 
 // Configure Peko
@@ -14,8 +14,8 @@ Peko.addStaticRoute({
   contentType: "application/javascript",
 });
 Peko.addStaticRoute({
-  route: "/Layout.js",
-  fileURL: new URL(`./Layout.js`, import.meta.url),
+  route: "/Navbar.js",
+  fileURL: new URL(`./components/Navbar.js`, import.meta.url),
   contentType: "application/javascript",
 });
 
@@ -29,9 +29,10 @@ Peko.addRoute({
 
     // load the contents of the JS file (could use static handler but simpler to use Deno.readFile)
     const jsUInt8Array = await Deno.readFile(
-      new URL("./src.js", import.meta.url)
+      new URL("./js-package.js", import.meta.url)
     );
     const jsString = decoder.decode(jsUInt8Array);
+    // console.log(`JAVASCRIPT${jsString}`);
 
     // here we manually call the ssrHandler to generate a standard HTML response
     // we will grab the HTML from the body of the response and use in our custom JSON response below
@@ -50,8 +51,8 @@ Peko.addRoute({
           modulepreload: `<script modulepreload="true" type="module" src="/src.js"></script>`,
           hydrationScript: `<script type="module">
               import { hydrate } from "https://npm.reversehttp.com/preact,preact/hooks,htm/preact,preact-render-to-string";
-              import Home from "/src.js";
-              hydrate(Home({ server_time: ${
+              import NavComponent from "/src.js";
+              hydrate(NavComponent({ server_time: ${
                 params && params.server_time
               } }), document.getElementById("root"))
           </script>`,

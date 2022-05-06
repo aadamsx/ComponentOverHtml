@@ -12,9 +12,11 @@
     "html-react-parser": "^1.4.12",
     "next": "12.1.5",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "sanitize-html": "^2.7.0"
   },
   "devDependencies": {
+    "@types/sanitize-html": "^2.6.2",
     "autoprefixer": "^10.4.5",
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.5",
