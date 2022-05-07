@@ -5,7 +5,8 @@ export default function Home({ data }) {
   return (
     <div className={styles.container}>
       {parse(data.html)}
-      {/* <script>{data.javascript}</script> */}
+      {/* {parse(data.css)}
+      {parse(data.javascript)} */}
       <footer className={styles.footer}></footer>
     </div>
   );
@@ -14,10 +15,11 @@ export default function Home({ data }) {
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
-  const response = await fetch(`http://localhost:7777/navbar-data`);
+  const response = await fetch(`http://localhost:7777/navbar-raw`);
   const data = await response.json();
-  data.html = sanitizeJavaScript(data.html);
-  data.html = sanitizeCss(data.html);
+  console.log(data);
+  // data.html = sanitizeJavaScript(data.html);
+  // data.html = sanitizeCss(data.html);
 
   return { props: { data } };
 }
