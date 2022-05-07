@@ -1,0 +1,20 @@
+import { html } from "https://npm.reversehttp.com/preact,preact/hooks,htm/preact,preact-render-to-string";
+
+import Navbar from "./components/Navbar.js";
+import Styles from "./components/Styles.js";
+import Exec from "./components/Exec.js";
+
+const NavbarRawComponent = ({ server_time }) => {
+  return html`
+    <${Navbar} />
+    <p>Time of server request: <strong>${server_time}</strong></p>
+    <p>
+      Time of latest render: <strong>${Date.now()}</strong> ${"<"}- changes with
+      hydration!
+    </p>
+    <${Exec} />
+    <${Styles} />
+  `;
+};
+
+export default NavbarRawComponent;
