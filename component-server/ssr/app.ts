@@ -94,7 +94,7 @@ Peko.addRoute({
 
     // now we take our HTML & JS and add into our JSON data along with an example CSS string
     const customBody = {
-      html: htmlString,
+      html: `<div>${htmlString}</div>`,
       css: `<style>${cssString}</style>`,
       javascript: `<script>${jsString}</script>`,
     };
